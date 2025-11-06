@@ -18,6 +18,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "cron": "^4.3.3"
+    "cron": "^4.3.3",
+    "env-var": "^7.5.0"
   }
 }
