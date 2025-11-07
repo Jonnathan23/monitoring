@@ -20,6 +20,7 @@ export class CheckService implements CheckServiceUseCase {
     private readonly logRepository: LogRepository;
     private readonly succesCallback: SuccesCallBack;
     private readonly errorCallback: ErrorCallBack;
+    private readonly origin = 'check-service.ts'
 
     constructor({ logRepository, succesCallback, errorCallback }: CheckServiceProps) {
         this.logRepository = logRepository;
@@ -35,17 +36,22 @@ export class CheckService implements CheckServiceUseCase {
                 throw new Error(`Error on check service ${url}`);
             }
 
-            const log = new LogEntity(`Success on check service ${url}`, LogSeverityLevel.low);
+            const log = new LogEntity({
+                message: `Success on check service ${url}`,
+                level: LogSeverityLevel.low,
+                origin: this.origin,
+            });
 
             this.logRepository.saveLog(log);
             this.succesCallback && this.succesCallback();
+            //this.succesCallback!();
 
             return true
         } catch (error) {
 
             const errorMessage = `${error}`;
 
-            const log = new LogEntity(errorMessage, LogSeverityLevel.high);
+            const log = new LogEntity({ message: errorMessage, level: LogSeverityLevel.high, origin: this.origin });
             this.logRepository.saveLog(log);
 
             this.errorCallback && this.errorCallback(errorMessage)
