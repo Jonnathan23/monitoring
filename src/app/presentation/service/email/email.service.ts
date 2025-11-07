@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
 import { envs } from "../../../../config/plugins/envs.plugings";
+import { LogRepository } from "../../../domain/repository/log.repository";
+import { LogEntity, LogSeverityLevel } from "../../../domain/entities/log.entity";
 
 interface SendMailOptions {
     to: string | string[];
@@ -14,6 +16,8 @@ interface Attatchement {
 }
 
 export class EmailService {
+
+
     private transporter = nodemailer.createTransport({
         service: envs.MAILER_SERVICE,
         auth: {
@@ -33,19 +37,16 @@ export class EmailService {
                 subject,
                 html: htmlBody,
                 attachments
-            });
-
-            console.log(sentInformation);
+            });          
 
             return true
-
         } catch (error) {
-
+           
             return false
         }
     }
 
-    async sendEmailWithFileSystemLogs(to: SendMailOptions['to']) {
+    async sendEmailWithFileSystemLogs(to: string | string[]): Promise<boolean> {
 
         const subject = 'Logs de sistema - NOC';
         const htmlBody = `
