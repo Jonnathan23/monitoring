@@ -2,30 +2,30 @@ import colors from 'colors'
 
 export class Colors {
     static blueBold(message: string) {
-        colors.blue.bold(message)
+        return colors.blue.bold(message)
     }
 
     static cyan(message: string) {
-        colors.cyan(message)
+        return colors.cyan(message)
     }
 
     static cyanBold(message: string) {
-        colors.cyan.bold(message)
+        return  colors.cyan.bold(message)
     }
 
     static green(message: string) {
-        colors.green(message)
+        return  colors.green(message)
     }
 
     static red(message: string) {
-        colors.red(message)
+        return  colors.red(message)
     }
 
     static redBold(message: string) {
-        colors.red.bold(message)
+        return  colors.red.bold(message)
     }
 
     static yellow(message: string) {
-        colors.yellow(message)
+        return  colors.yellow(message)
     }
 }
