@@ -11,3 +11,7 @@ logs/
 
 # Base de datos
 mongo/
+postgres/
+/src/generated/prisma
+
+migrations

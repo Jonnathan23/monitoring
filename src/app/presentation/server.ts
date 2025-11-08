@@ -1,13 +1,15 @@
 import { CheckService } from "../domain/use-cases/checks/check-service.use";
 import { FileSystemDataSourceImpl } from "../infrastructure/datasources/file-system.datasource.impl";
 import { MongoLogDatasource } from "../infrastructure/datasources/mongo-log.datasource.impl";
+import { PostgresLogDatasource } from "../infrastructure/datasources/postgres-log.datasource.impl";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { CronService } from "./service/cron/cron.service";
 import { EmailService } from "./service/email/email.service";
 
 const logRepository = new LogRepositoryImpl(
     //new FileSystemDataSourceImpl()
-    new MongoLogDatasource()
+    //new MongoLogDatasource()
+    new PostgresLogDatasource()
 );
 
 const emailService = new EmailService();
